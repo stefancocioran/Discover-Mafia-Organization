@@ -1,0 +1,71 @@
+Cocioran Stefan
+321CA
+
+	Analiza Algoritmilor - TEMA 2- GIGEL SI MAFIOTII -
+
+Task1 - Plantarea spionilor
+
+-> Se cere rezolvarea unei probleme de K-colorare a unui graf
+
+Notatii: spies = numar_spioni = numarul de culorile folosite
+	 mobFamilies = numar_familii = numarul de noduri din graf
+	 relationships = numar_relatii = numarul de muchii din graf
+
+-> Pentru o reducere la forma SAT a acestei probleme, avem 3 tipuri de clauze:
+	- Clauza tip 1 - oricare doua noduri adiacente nu pot avea aceeasi culoare
+	- Clauza tip 2 - fiecarui nod trebuie sa ii fie atribuita cel putin o culoare
+	- Clauza tip 3 - fiecarui nod trebuie sa ii fie atribuita cel mult o culoare
+
+Cand se citesc datele de intrare, am creeat o matrice de adiacenta data de relatiile din input.
+Pentru formularea intrebarii pentru Oracol, am considerat numarul de variabile ca fiind numar_spioni * numar_familii, iar numarul de clauze va fi:
+	- pentru clauzele de tip 1 = numar_culori * numar_muchii
+	- pentru clauzele de tip 2 = numar_noduri
+	- pentru clauzele de tip 3 = [suma Gauss de la 1 la (numar_culori-1)] * numar_noduri
+  
+
+
+Task2 - Investigatiile familiilor extinse
+
+-> Se cere rezolvarea unei probleme de tip K-clica
+
+Notatii: spies = numar_spioni = numarul de noduri in clica
+	 mobFamilies = numar_familii = numarul de noduri din graf
+	 relationships = numar_relatii = numarul de muchii din graf
+
+-> Am procedat asemanator ca la Task1, insa pentru formularea intrebarii pentru Oracol am folosit indiciile din "pergament".
+-> Pentru o reducere la forma SAT a acestei probleme, avem 3 tipuri de clauze:
+	- Clauza tip 1 - trebuie sa existe cel putin un nod pe fiecare pozitie din clica
+	- Clauza tip 2 - oricare doua noduri neadiacente nu pot fi in clica
+	- Clauza tip 3 - doua noduri nu pot fi pe aceeasi pozitie in clica
+
+Astfel, va rezulta urmatorul numar de clauze:
+	- pentru clauzele de tip 1 = numar_noduri
+	- pentru clauzele de tip 2 = numar_muchii_graf_complementar * numar_noduri_clica * (numar_noduri_clica - 1)
+	- pentru clauzele de tip 3 - aici am separat numarul de clauze in doua parti:
+
+					-> un nod V nu poate fi in acelasi timp pe pozitia i si pozitia j in clica
+						 => numar_noduri_clica * numar_noduri * (numar_noduri - 1) / 2  clauze
+
+					-> doua noduri diferite V si W nu pot fi ambele pe aceeasi pozitie i din clica 
+						 => numar_noduri_clica * (numar_noduri_clica - 1) / 2 * numar_noduri  clauze
+  
+
+
+Task3 - Arestarile mafiotilori
+
+-> Am redus problema Clicii la problema acoperirii cu varfuri (Minimum vertex cover)
+
+Teorema spune ca dimensiunea unei clici maxime a unui graf este egala cu dimensiunea acoperirii cu varfuri minime a grafului complementar.
+Asta se datoreaza faptului ca o multime de noduri A este o clica a grafului G daca si numai daca complementul lui A formeaza o acoperire cu varfuri minima a grafului complementar lui G. 
+
+Astfel, dupa ce am citit datele de intrare, am format matricea de adiacenta complementara si am incercat sa gasesc clica de dimensiune maxima plecand de la numarul maxim de noduri(mobFamilies).
+Am extras doar nodurile ce nu se afla in clica maxima rezultata in urma intrebarilor adresate Oracolului.
+
+BONUS: Arestarile mafiotilor tura doi
+
+-> Am folosit "Weigthed Partial Max-SAT" pentru problema acoperirii cu varfuri de la Task3.
+-> Pentru o reducere la forma SAT a acestei probleme, avem 2 tipuri de clauze:
+	- N clauze soft, unde N este numarul de noduri - daca un nod este selectat, la cost este adaugat 1
+	- M clauze hard, unde M este numarul de muchii - pentru orice muchie din graf, cel putin un nod trebuie sa fie vizitat/sa se afle in acoperirea minima cu varfuri
+Costul pentru clauzele soft este 1, iar pentru cele hard costul este (N + 1).
+	
