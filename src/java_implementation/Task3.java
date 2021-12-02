@@ -1,6 +1,3 @@
-// Copyright 2020
-// Author: Matei Simtinică
-
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.FileWriter;
@@ -10,10 +7,8 @@ import java.util.Arrays;
 import java.util.List;
 
 /**
- * Task3
  * This being an optimization problem, the solve method's logic has to work differently.
- * You have to search for the minimum number of arrests by successively querying the oracle.
- * Hint: it might be easier to reduce the current task to a previously solved task
+ * Search for the minimum number of arrests by successively querying the oracle.
  */
 public class Task3 extends Task {
     String task2InFilename;
@@ -33,8 +28,8 @@ public class Task3 extends Task {
         task2Solver.addFiles(task2InFilename, oracleInFilename, oracleOutFilename, task2OutFilename);
         readProblemData();
 
-        // TODO: implement a way of successively querying the oracle (using Task2) about various arrest numbers until you
-        //  find the minimum
+        // implemented a way of successively querying the oracle about various arrest numbers until
+        // the minimum is found
 
         reduceToTask2();
         extractAnswerFromTask2();
@@ -57,7 +52,7 @@ public class Task3 extends Task {
 
     @Override
     public void readProblemData() throws IOException {
-        // TODO: read the problem input (inFilename) and store the data in the object's attributes
+        // read the problem input (inFilename) and store the data in the object's attributes
         BufferedReader bufferedReader = new BufferedReader(new FileReader(inFilename));
         String st;
         boolean first = true;
@@ -81,7 +76,7 @@ public class Task3 extends Task {
     }
 
     public void reduceToTask2() throws IOException, InterruptedException {
-        // TODO: reduce the current problem to Task2
+        // reduce the current problem to Task2
 
         computeComplementaryMatrix();
         task2Solver.setAdjacencyMatrix(adjacencyMatrix);
@@ -104,7 +99,7 @@ public class Task3 extends Task {
     }
 
     public void extractAnswerFromTask2() throws IOException {
-        // TODO: extract the current problem's answer from Task2's answer
+        // extract the current problem's answer from Task2's answer
 
         correctAnswer = task2Solver.getCorrectAnswer();
         spies = task2Solver.getSpies();
@@ -114,7 +109,7 @@ public class Task3 extends Task {
 
     @Override
     public void writeAnswer() throws IOException {
-        // TODO: write the answer to the current problem (outFilename)
+        // write the answer to the current problem (outFilename)
 
         FileWriter myWriter = new FileWriter(outFilename);
 

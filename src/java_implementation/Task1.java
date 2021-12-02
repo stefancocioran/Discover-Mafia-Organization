@@ -1,6 +1,3 @@
-// Copyright 2020
-// Author: Matei Simtinică
-
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.FileWriter;
@@ -9,15 +6,13 @@ import java.util.Arrays;
 
 
 /**
- * Task1
- * You have to implement 4 methods:
- * readProblemData         - read the problem input and store it however you see fit
+ * readProblemData         - read the problem input and store it
  * formulateOracleQuestion - transform the current problem instance into a SAT instance and write the oracle input
  * decipherOracleAnswer    - transform the SAT answer back to the current problem's answer
  * writeAnswer             - write the current problem's answer
  */
 public class Task1 extends Task {
-    // TODO: define necessary variables and/or data structures
+    // define necessary variables and/or data structures
     private int mobFamilies;
     private int relationships;
     private int spies;
@@ -43,7 +38,7 @@ public class Task1 extends Task {
 
     @Override
     public void readProblemData() throws IOException {
-        // TODO: read the problem input (inFilename) and store the data in the object's attributes
+        // read the problem input (inFilename) and store the data in the object's attributes
 
         bufferedReader = new BufferedReader(new FileReader(inFilename));
         String st;
@@ -70,8 +65,8 @@ public class Task1 extends Task {
 
     @Override
     public void formulateOracleQuestion() throws IOException {
-        // TODO: transform the current problem into a SAT problem and write it (oracleInFilename) in a format
-        //  understood by the oracle
+        // transform the current problem into a SAT problem and write it (oracleInFilename) in a format
+        // understood by the oracle
 
         FileWriter myWriter = new FileWriter(oracleInFilename);
         int type1Clauses = spies * relationships;
@@ -112,7 +107,7 @@ public class Task1 extends Task {
 
     @Override
     public void writeAnswer() throws IOException {
-        // TODO: write the answer to the current problem (outFilename)
+        // write the answer to the current problem (outFilename)
         bufferedReader = new BufferedReader(new FileReader(oracleOutFilename));
         FileWriter myWriter = new FileWriter(outFilename);
         String st = bufferedReader.readLine();

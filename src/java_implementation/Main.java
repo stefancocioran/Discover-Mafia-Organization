@@ -1,5 +1,3 @@
-// Copyright 2020
-// Author: Matei Simtinică
 
 import java.io.IOException;
 
