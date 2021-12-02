@@ -13,7 +13,7 @@ import java.util.List;
 public class Task3 extends Task {
     String task2InFilename;
     String task2OutFilename;
-    // TODO: define necessary variables and/or data structures
+    // define necessary variables and/or data structures
     private int mobFamilies;
     private int relationships;
     private int spies;
